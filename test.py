@@ -20,14 +20,26 @@ def clean(lis):
 
 def cleanNum(lis):
     cleanLis = []
-    for i in lis:
-        if i != '':
-            a = ''
-            for j in i:
-                if j.isdigit() or j=='.':
-                    a+=j
-            if a!= '':
-                cleanLis.append(a)
+    for string in lis:
+        if string =='':
+            continue
+        a = ''
+        decimalflag = True
+        negativeflag = True
+        for i in string:
+            if i.isdigit():
+                a+= i
+            elif i == '-' and negativeflag:
+                a+=i
+                negativeflag = False
+            
+            elif i=='.' and decimalflag:
+                a+=i
+                flag = False
+            else:
+                break
+        if a!='':
+            cleanLis.append(a)
 
     return cleanLis
 
@@ -44,12 +56,15 @@ def ScreenshotMarket():
 
     profitSS = pyautogui.screenshot(region=(coords['market-profittopleft'][0],coords['market-profittopleft'][1],coords['market-profitbottomright'][0]-coords['market-profittopleft'][0],coords['market-profitbottomright'][1]-coords['market-profittopleft'][1]))
     profit = cleanNum(pytesseract.image_to_string(profitSS).split('\n'))
+    
 
     res = {}
     n = len(buy)
 
+
     for i in range(n):
-        res[name[i*2]]=(float(sell[i]),float(buy[i]),float(profit[i]))
+
+        res[name[i*2]]=(sell[i],buy[i],profit[i])
 
     return res
 
@@ -72,8 +87,16 @@ def init():
 def scraper(pages:int,category:str,rarity:list,sortby:str):
 
     move(['garage','market','market-reset',category]+rarity+[sortby],3)
+    win32api.SetCursorPos((0,0))
+    time.sleep(0.5)
     res = {}
     for i in range(pages):
         res.update(ScreenshotMarket())
-        move(['market-next'])
+        move(['market-next'],3)
     return res
+
+coords = init()
+
+a = scraper(3,'market-weapon',['market-epic','market-rare','market-special'],'market-profit')
+for i in a:
+    print(i,':',a[i])
