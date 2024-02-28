@@ -224,20 +224,83 @@ while True:
     if not win32api.GetAsyncKeyState(win32con.VK_LBUTTON):
         break
 
-print('click on top left')
+print('click on reset icon ')
 while True:
     if win32api.GetAsyncKeyState(win32con.VK_LBUTTON):
         break
-coords['market-topleft']=win32api.GetCursorPos()
+coords['market-reset']=win32api.GetCursorPos()
 while True:
     if not win32api.GetAsyncKeyState(win32con.VK_LBUTTON):
         break
 
-print('click on bottom right ')
+print('click on name top left')
 while True:
     if win32api.GetAsyncKeyState(win32con.VK_LBUTTON):
         break
-coords['market-bottomright']=win32api.GetCursorPos()
+coords['market-nametopleft']=win32api.GetCursorPos()
+while True:
+    if not win32api.GetAsyncKeyState(win32con.VK_LBUTTON):
+        break
+
+print('click on name bottom right ')
+while True:
+    if win32api.GetAsyncKeyState(win32con.VK_LBUTTON):
+        break
+coords['market-namebottomright']=win32api.GetCursorPos()
+while True:
+    if not win32api.GetAsyncKeyState(win32con.VK_LBUTTON):
+        break
+
+print('click on sold for top left')
+while True:
+    if win32api.GetAsyncKeyState(win32con.VK_LBUTTON):
+        break
+coords['market-soldtopleft']=win32api.GetCursorPos()
+while True:
+    if not win32api.GetAsyncKeyState(win32con.VK_LBUTTON):
+        break
+
+print('click on sold for bottom right ')
+while True:
+    if win32api.GetAsyncKeyState(win32con.VK_LBUTTON):
+        break
+coords['market-soldbottomright']=win32api.GetCursorPos()
+while True:
+    if not win32api.GetAsyncKeyState(win32con.VK_LBUTTON):
+        break
+
+print('click on bought for top left')
+while True:
+    if win32api.GetAsyncKeyState(win32con.VK_LBUTTON):
+        break
+coords['market-boughttopleft']=win32api.GetCursorPos()
+while True:
+    if not win32api.GetAsyncKeyState(win32con.VK_LBUTTON):
+        break
+
+print('click on bought for bottom right ')
+while True:
+    if win32api.GetAsyncKeyState(win32con.VK_LBUTTON):
+        break
+coords['market-boughtbottomright']=win32api.GetCursorPos()
+while True:
+    if not win32api.GetAsyncKeyState(win32con.VK_LBUTTON):
+        break
+
+print('click on profit top left')
+while True:
+    if win32api.GetAsyncKeyState(win32con.VK_LBUTTON):
+        break
+coords['market-profittopleft']=win32api.GetCursorPos()
+while True:
+    if not win32api.GetAsyncKeyState(win32con.VK_LBUTTON):
+        break
+
+print('click on profit bottom right ')
+while True:
+    if win32api.GetAsyncKeyState(win32con.VK_LBUTTON):
+        break
+coords['market-profitbottomright']=win32api.GetCursorPos()
 while True:
     if not win32api.GetAsyncKeyState(win32con.VK_LBUTTON):
         break
