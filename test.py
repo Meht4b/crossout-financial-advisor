@@ -53,22 +53,27 @@ def ScreenshotMarket():
 
     return res
 
-#initialising 
-f = open('userdata.bin','rb')
-userdata = pickle.load(f)
-f.close()
-if userdata!= None:
-    coords = userdata[0]
-else:
-    import init
-    f = open('userdata.bin','rb')
-    coords = init.coords
-    userdata = init.user
+def move(lis:list,sleep:int):
+    global coords
+    for i in lis:
+        click(coords[i])
+        time.sleep(sleep)
 
-items = {}
+def init():
+    try:
+        f = open('usercoords.bin','rb')
+        coords = pickle.load(f)
+    except:
+        import init
+        coords = init.coords
+    
+    return coords
 
+def scraper(pages:int,category:str,rarity:list,sortby:str):
 
-
-a = ScreenshotMarket()
-for i in a:
-    print(i,':',a[i])
+    move(['garage','market','market-reset',category]+rarity+[sortby],3)
+    res = {}
+    for i in range(pages):
+        res.update(ScreenshotMarket())
+        move(['market-next'])
+    return res

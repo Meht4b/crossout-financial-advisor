@@ -7,7 +7,18 @@ import win32con
 #ignore
 coords = {}
 
+
+
 n=input('setting coordinates, press any key if ready')
+while True:
+    if not win32api.GetAsyncKeyState(win32con.VK_LBUTTON):
+        break
+
+print('click on garage icon ')
+while True:
+    if win32api.GetAsyncKeyState(win32con.VK_LBUTTON):
+        break
+coords['garage']=win32api.GetCursorPos()
 while True:
     if not win32api.GetAsyncKeyState(win32con.VK_LBUTTON):
         break
@@ -422,8 +433,8 @@ minBuyOrder = int(input('enter min no. of buy orders'))
 minSellOrder = int(input('enter min no. of sell offers'))
 minDemandSupply=int(input('enter min demand/supply ratio'))
 
-f = open('userdata.bin','wb')
+f = open('usercoords.bin','wb')
 
 #coords ,coins allowed to spend,{item:[how much current offer]} {item:[bought for how much]},{item:[sold for how much],}
 user = [coords,coinInvest,minBuyOrder,minSellOrder,minDemandSupply]
-pickle.dump(user,f)
+pickle.dump(coords,f)
